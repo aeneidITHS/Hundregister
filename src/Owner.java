@@ -1,4 +1,4 @@
-public class Owner {
+public class Owner  implements Comparable<Owner> {
     private  final String name;
 
 
@@ -16,4 +16,9 @@ public class Owner {
         return "Owner " + name;
     }
 
+
+    @Override
+    public int compareTo(Owner otherName) {
+        return this.name.compareTo(otherName.name);
+    }
 }
