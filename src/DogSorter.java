@@ -1,11 +1,12 @@
+//Josef Lilja joli9146
 import java.util.ArrayList;
 import java.util.Comparator;
 
 
 public class DogSorter {
-    private static int swapCounter = 0;
+    private static int swapCounter;
 
-    public static void swapDogs(ArrayList<Dog> dogs,int indexOne,int indexTwo) {
+    private static void swapDogs(ArrayList<Dog> dogs,int indexOne,int indexTwo) {
         if(indexOne > dogs.size() || indexTwo > dogs.size()) {
             throw new ArrayIndexOutOfBoundsException("Index out of bounds");
         }
@@ -22,7 +23,7 @@ public class DogSorter {
 
     }
 
-    public static int nextDog(Comparator<Dog> dogComparator,ArrayList<Dog> dogs,int startIndex) {
+    private static int nextDog(Comparator<Dog> dogComparator,ArrayList<Dog> dogs,int startIndex) {
         int size = dogs.size();
         int minIndex = startIndex;
         for (int i = startIndex; i <= size - 1; i++) {
@@ -36,6 +37,13 @@ public class DogSorter {
     }
 
     public static int sortDogs(Comparator<Dog> dogComparator,ArrayList<Dog> dogs) {
+        if(dogs.isEmpty()){
+            return 0;
+        }
+        if(dogs.size()==1){
+            return 0;
+        }
+        swapCounter = 0;
         for (int i = 0; i < dogs.size(); i++) {
             int minIndex = nextDog(dogComparator,dogs,i);
             if(minIndex != i) {

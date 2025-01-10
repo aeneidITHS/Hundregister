@@ -1,3 +1,4 @@
+//Josef Lilja joli9146
 public class Dog {
     private String name;
     private String breed;

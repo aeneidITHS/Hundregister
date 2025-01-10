@@ -1,3 +1,4 @@
+//Josef Lilja joli9146
 import java.util.Comparator;
 
 public class DogNameComparator implements Comparator<Dog> {
