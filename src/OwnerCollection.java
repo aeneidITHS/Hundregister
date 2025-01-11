@@ -7,10 +7,8 @@ public class OwnerCollection {
   private Owner[] ownerArray;
   private int size;
 
-  private static final int DEFAULT_CAPACITY = 20;
-
   public OwnerCollection(){
-     this.ownerArray = new Owner[DEFAULT_CAPACITY];
+     this.ownerArray = new Owner[20];
      this.size = 0;
   }
    private void ensureCapacity(int requiredCapicity){
@@ -43,22 +41,6 @@ public class OwnerCollection {
      return true;
    }
 
-
-   public boolean removeOwner(String name){
-     if(size == 0){
-        return false;
-     }
-     if(name == null){
-         return false;
-     }
-     for(int i = 0; i< ownerArray.length; i++){
-        if (ownerArray[i].getName().equals(name) && ownerArray[i] != null){
-           removeIndex(i);
-           return true;
-        }
-     }
-     return false;
-   }
    private void removeIndex(int index){
      for(int i = index; i < size-1; i++){
         ownerArray[i] = ownerArray[i+1];
@@ -73,13 +55,30 @@ public class OwnerCollection {
         return false;
      }
      for (int i = 0; i< ownerArray.length; i++){
-        if(ownerArray[i].equals(owner) && ownerArray[i] != null ){
+        if(ownerArray[i] != null && ownerArray[i].equals(owner) ){
            removeIndex(i);
            return true;
         }
      }
      return false;
    }
+
+    public boolean removeOwner(String name){
+        if(size == 0){
+            return false;
+        }
+        if(name == null){
+            return false;
+        }
+        for(int i = 0; i< ownerArray.length; i++){
+            if (ownerArray[i] != null && ownerArray[i].getName().equals(name)){
+                removeIndex(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
    public boolean containsOwner(String name){
      if(size == 0){
         return false;

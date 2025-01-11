@@ -5,6 +5,7 @@ public class Dog {
     private int age;
     private int weight;
     private double tailLength;
+    private Owner owner;
 
     public Dog(String name, String breed, int age, int weight){
         this.name = name.trim().toUpperCase();
@@ -23,20 +24,19 @@ public class Dog {
         }
     }
 
-    public void updateAge(int years){
-        // Prevent decreasing the age below 0 (no negative age allowed)
+    public void updateAge(int years) {
+
         if (years < 0) {
-            return; // Simply return without updating the age if trying to decrease it
-        }
-        // If the resulting age exceeds Integer.MAX_VALUE, cap it at Integer.MAX_VALUE
-        if (years == Integer.MAX_VALUE){
-            return;
-        }
-        this.age += years;
+            ;
+            if (years == Integer.MAX_VALUE) {
+                return;
+            }
+            this.age += years;
 
 
-        // Recalculate the tail length
-        this.tailLength = calculateTailLength(this.breed, this.age, this.weight);
+            // Recalculate the tail length
+            this.tailLength = calculateTailLength(this.breed, this.age, this.weight);
+        }
     }
 
     public int getAge() {
@@ -58,6 +58,23 @@ public class Dog {
     public double getTailLength() {
         return tailLength;
     }
+
+    public boolean setOwner(Owner owner){
+        if(this.owner != null){
+            this.owner.removeDog(this);
+        }
+        this.owner = owner;
+        if (owner != null){
+          return owner.addDog(this);
+        }
+        return false;
+    }
+
+    public Owner getOwner(){
+        return owner;
+    }
+
+
 
     @Override
     public String toString() {
