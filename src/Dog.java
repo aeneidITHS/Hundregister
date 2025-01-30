@@ -27,7 +27,6 @@ public class Dog {
     public void updateAge(int years) {
 
         if (years < 0) {
-            ;
             if (years == Integer.MAX_VALUE) {
                 return;
             }
@@ -59,15 +58,23 @@ public class Dog {
         return tailLength;
     }
 
-    public boolean setOwner(Owner owner){
-        if(this.owner != null){
-            this.owner.removeDog(this);
+    public boolean setOwner(Owner newOwner){
+        if(newOwner == null){
+            removeOwner();
+            return true;
         }
-        this.owner = owner;
-        if (owner != null){
-          return owner.addDog(this);
+        if(getOwner() != null){
+            return false;
         }
-        return false;
+        if(newOwner.equals(owner)){
+            return false;
+        }
+        return owner.addDog(this);
+    }
+    private void removeOwner(){
+        if(owner.getDogs().isEmpty()){
+            owner.removeDog(this);
+        }
     }
 
     public Owner getOwner(){
@@ -75,10 +82,10 @@ public class Dog {
     }
 
 
-
     @Override
     public String toString() {
-        return String.format("Dog{name='%s', breed='%s', age=%d, weight=%d, tailLength=%.1f}",
-                name, breed, age, weight, tailLength);
+        String ownerName = (owner != null) ? owner.getName() : "No owner";
+        return String.format("Dog{name='%s', breed='%s', age=%d, weight=%d, tailLength=%.1f, owner=%s}",
+                name, breed, age, weight, tailLength, ownerName);
     }
 }
