@@ -18,22 +18,35 @@ public class Owner  implements Comparable<Owner> {
         return name;
     }
     public boolean addDog(Dog dog){
-        if(dog != null && !dogList.contains(dog) && dog.getOwner() == null){
-            dogList.add(dog);
-            return dog.setOwner();
+        if(dog == null || dogList.contains(dog)){
+            return false;
         }
-        return false;
+        if(dog.getOwner() != null){
+            return false;
+        }
+            this.dogList.add(dog);
+            return true;
+
+
     }
 
     public boolean removeDog(Dog dog){
-        if(dog.getOwner() !=null && dogList.contains(dog)){
+        if(dog == null || !dogList.contains(dog)){
             return false;
         }
-        if (dogList.remove(dog)){
-            dog.setOwner(null);
-            return true;
+        if(dog.getOwner() == null){
+            return false;
         }
-        return false;
+        if(dog.getOwner() != this){
+            return false;
+        }
+        if(dog.getOwner() != null){
+            return false;
+        }
+
+        dogList.remove(dog);
+        return true;
+
 
     }
 

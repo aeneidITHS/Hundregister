@@ -1,3 +1,4 @@
+///Josef Lilja joli9146
 //Josef Lilja joli9146
 public class Dog {
     private String name;
@@ -59,22 +60,35 @@ public class Dog {
     }
 
     public boolean setOwner(Owner newOwner){
-        if(newOwner == null){
-            removeOwner();
+
+        if(this.owner == newOwner){
+            return false;
+        }
+        if(this.owner != null && newOwner != null){
+            return false;
+        }
+        if(!hasDogs(this.owner)){
+            return false;
+        }
+
+        if(newOwner == null && this.owner != null){
+            if(!hasDogs(this.owner)){
+                return false;
+            }
+            this.owner.removeDog(this);
+            this.owner = null;
             return true;
         }
-        if(getOwner() != null){
-            return false;
+
+        if(newOwner != null){
+            newOwner.addDog(this);
+            this.owner = newOwner;
+            return true;
         }
-        if(newOwner.equals(owner)){
-            return false;
-        }
-        return owner.addDog(this);
+        return false;
     }
-    private void removeOwner(){
-        if(owner.getDogs().isEmpty()){
-            owner.removeDog(this);
-        }
+    private boolean hasDogs(Owner owner){
+        return owner.getDogs().isEmpty();
     }
 
     public Owner getOwner(){
