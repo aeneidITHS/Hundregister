@@ -20,8 +20,9 @@ public class DogCollection {
         if (checkIfEmpty()){
             return false;
         }
+
         for (Dog i: dogs){
-            if (i.getName().equals(name)){
+            if (i.getName().equals(name) && i.getOwner() ==null){
                return dogs.remove(i);
             }
         }
@@ -31,8 +32,11 @@ public class DogCollection {
         if (checkIfEmpty()){
             return false;
         }
+        if(dog.getOwner() != null){
+            return false;
+        }
         for(Dog i: dogs){
-            if(dog.getName().equals(i.getName())){
+            if(dog.getName().equals(i.getName()) && i.getOwner() == null){
                 return dogs.remove(i);
             }
         }

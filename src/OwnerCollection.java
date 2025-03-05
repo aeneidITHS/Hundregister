@@ -55,7 +55,7 @@ public class OwnerCollection {
         return false;
      }
      for (int i = 0; i< ownerArray.length; i++){
-        if(ownerArray[i] != null && ownerArray[i].equals(owner) ){
+        if(ownerArray[i] != null && ownerArray[i].equals(owner) && ownerArray[i].getDogs() != null ){
            removeIndex(i);
            return true;
         }
@@ -71,7 +71,7 @@ public class OwnerCollection {
             return false;
         }
         for(int i = 0; i< ownerArray.length; i++){
-            if (ownerArray[i] != null && ownerArray[i].getName().equals(name)){
+            if (ownerArray[i] != null && ownerArray[i].getName().equals(name) && ownerArray[i].getDogs() != null){
                 removeIndex(i);
                 return true;
             }
