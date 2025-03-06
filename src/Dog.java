@@ -28,7 +28,7 @@ public class Dog {
     public void updateAge(int years) {
 
         if (years < 0) {
-            if (years == Integer.MAX_VALUE) {
+            if (years ==  Integer.MAX_VALUE) {
                 return;
             }
             this.age += years;

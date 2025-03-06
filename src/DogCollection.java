@@ -82,7 +82,7 @@ public class DogCollection {
     }
 
 
-    public ArrayList<Dog> getDogWithMinTail(double tailLength){
+    public ArrayList<Dog> getDogsWithTail(double tailLength){
         ArrayList<Dog> filteredList = new ArrayList<>();
         DogTailNameComparator comparator = new DogTailNameComparator();
 

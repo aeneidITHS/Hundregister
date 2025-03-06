@@ -6,7 +6,6 @@ public class InputReader {
     private static final Set<InputStream> INPUT_STREAMS = Collections.synchronizedSet(new HashSet<>());
     private final Scanner scanner;
     private final InputStream inputStream;
-    private static InputReader instance;
 
     public InputReader(InputStream inputStream) {
         if (INPUT_STREAMS.contains(inputStream)) {
